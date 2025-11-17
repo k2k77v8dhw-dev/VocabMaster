@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="WordEntity" representedClassName="WordEntity" syncable="YES">
+        <attribute name="categoryType" optional="NO" attributeType="String"/>
+        <attribute name="definition" optional="NO" attributeType="String"/>
+        <attribute name="example" optional="NO" attributeType="String"/>
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="language" optional="YES" attributeType="String"/>
+        <attribute name="pronunciation" optional="YES" attributeType="String"/>
+        <attribute name="translationLanguage" optional="YES" attributeType="String"/>
+        <attribute name="word" optional="NO" attributeType="String"/>
+    </entity>
+    <entity name="CompletedWordEntity" representedClassName="CompletedWordEntity" syncable="YES">
+        <attribute name="wordId" optional="NO" attributeType="String"/>
+        <attribute name="completedDate" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="SettingsEntity" representedClassName="SettingsEntity" syncable="YES">
+        <attribute name="currentLanguage" optional="NO" attributeType="String" defaultValueString="en"/>
+    </entity>
+</model>
