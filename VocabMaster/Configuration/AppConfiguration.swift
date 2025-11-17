@@ -15,6 +15,49 @@ struct AppConfiguration {
     /// Change this to switch between Core Data, AWS, Firebase, etc.
     static let dataProviderType: DataProviderType = .coreData
     
+    // MARK: - OpenAI Configuration
+    
+    struct OpenAI {
+        /// OpenAI API Key
+        /// Get your API key from: https://platform.openai.com/api-keys
+        /// IMPORTANT: In production, use Keychain or environment variables
+        static var apiKey: String {
+            // Try to get from environment first
+            if let key = ProcessInfo.processInfo.environment["OPENAI_API_KEY"] {
+                return key
+            }
+            
+            // Try to get from keychain
+            if let key = KeychainHelper.getOpenAIKey() {
+                return key
+            }
+            
+            // Fallback for development (REPLACE WITH YOUR KEY)
+            #if DEBUG
+            return "YOUR_OPENAI_API_KEY_HERE"
+            #else
+            return ""
+            #endif
+        }
+        
+        /// Default model for translation and text processing
+        static let defaultModel = "gpt-4-turbo-preview"
+        
+        /// Default model for vision/OCR
+        static let visionModel = "gpt-4-vision-preview"
+        
+        /// Enable OpenAI features
+        static let enableTranslation = true
+        static let enableOCR = true
+        static let enableVocabularyGeneration = true
+        
+        /// Request timeout (in seconds)
+        static let timeoutInterval: TimeInterval = 60
+        
+        /// Max retries for failed requests
+        static let maxRetries = 2
+    }
+    
     // MARK: - AWS Configuration
     
     struct AWS {
@@ -147,6 +190,17 @@ class KeychainHelper {
     
     static func setAPIKey(_ key: String) -> Bool {
         // TODO: Implement actual keychain storage
+        return false
+    }
+    
+    static func getOpenAIKey() -> String? {
+        // TODO: Implement actual keychain access for OpenAI
+        // For now, return nil
+        return nil
+    }
+    
+    static func setOpenAIKey(_ key: String) -> Bool {
+        // TODO: Implement actual keychain storage for OpenAI
         return false
     }
 }
